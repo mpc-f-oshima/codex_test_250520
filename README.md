@@ -10,6 +10,8 @@ This project uses [Poetry](https://python-poetry.org/) for dependency management
 4. The source code resides in the `imgutil/` package at the project root.
    Run the grayscale utility with
    `poetry run python -m imgutil.grayscale <input.png>`.
+   Run the binarize utility with
+   `poetry run python -m imgutil.binarize <input.png>`.
 
 ## Dependencies
 
