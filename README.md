@@ -11,3 +11,9 @@ This project uses [Poetry](https://python-poetry.org/) for dependency management
 ## Dependencies
 
 The project includes `numpy` and `opencv-python` as required packages.
+
+## Notes
+
+`grayscale.py` now reads and writes images using `np.fromfile` and
+`cv2.imdecode/encode`. This allows the script to handle file paths that
+contain non-ASCII characters (e.g. Japanese) on Windows.

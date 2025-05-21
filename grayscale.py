@@ -15,8 +15,11 @@ def main():
         print(f"File not found: {input_path}")
         sys.exit(1)
 
-    # Read the image using OpenCV
-    image = cv2.imread(str(input_path))
+    # Read the image using OpenCV. The np.fromfile/cv2.imdecode
+    # approach works even when the path contains non-ASCII
+    # characters (e.g. Japanese) on Windows.
+    image_data = np.fromfile(str(input_path), dtype=np.uint8)
+    image = cv2.imdecode(image_data, cv2.IMREAD_COLOR)
     if image is None:
         print(f"Failed to read image: {input_path}")
         sys.exit(1)
@@ -28,9 +31,16 @@ def main():
     output_name = input_path.stem + ".out" + input_path.suffix
     output_path = input_path.with_name(output_name)
 
-    # Save the grayscale image
-    if not cv2.imwrite(str(output_path), gray):
-        print(f"Failed to write image: {output_path}")
+    # Save the grayscale image. Use cv2.imencode/ndarray.tofile so
+    # that writing also works with non-ASCII paths.
+    success, buffer = cv2.imencode(input_path.suffix, gray)
+    if not success:
+        print(f"Failed to encode image: {output_path}")
+        sys.exit(1)
+    try:
+        buffer.tofile(str(output_path))
+    except Exception as e:
+        print(f"Failed to write image: {output_path} ({e})")
         sys.exit(1)
 
     print(f"Saved grayscale image to: {output_path}")
