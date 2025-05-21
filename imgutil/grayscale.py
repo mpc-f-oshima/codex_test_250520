@@ -7,7 +7,7 @@ import numpy as np
 
 def main():
     if len(sys.argv) != 2:
-        print("Usage: python grayscale.py <input.png>")
+        print("Usage: python -m imgutil.grayscale <input.png>")
         sys.exit(1)
 
     input_path = Path(sys.argv[1])
