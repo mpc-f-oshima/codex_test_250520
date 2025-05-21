@@ -7,8 +7,9 @@ This project uses [Poetry](https://python-poetry.org/) for dependency management
 1. Install Python 3.12 (e.g. with [pyenv](https://github.com/pyenv/pyenv)).
 2. Install Poetry.
 3. Run `poetry install` to create the virtual environment.
-4. The source code resides in the `imgutil/` package.
-   Run the grayscale utility with `python -m imgutil.grayscale <input.png>`.
+4. The source code resides in the `imgutil/` package at the project root.
+   Run the grayscale utility with
+   `poetry run python -m imgutil.grayscale <input.png>`.
 
 ## Dependencies
 
