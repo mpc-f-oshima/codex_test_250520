@@ -3,11 +3,12 @@ name = "codex_test_250520"
 version = "0.1.0"
 description = ""
 authors = ["Codex <codex@openai.com>"]
+packages = [{include = "imgutil"}]
 
 [tool.poetry.dependencies]
 python = ">=3.12,<3.13"
-numpy = "*"
-opencv-python = "*"
+numpy = "2.2.6"
+opencv-python = "4.11.0.86"
 
 [tool.poetry.dev-dependencies]
 
