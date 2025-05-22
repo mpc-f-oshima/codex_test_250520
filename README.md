@@ -12,6 +12,8 @@ This project uses [Poetry](https://python-poetry.org/) for dependency management
    `poetry run python -m imgutil.grayscale <input.png>`.
    Run the binarize utility with
    `poetry run python -m imgutil.binarize <input.png>`.
+   Run the shift utility with
+   `poetry run python -m imgutil.shift <input.png> <pixels>`.
 
 ## Dependencies
 
@@ -22,3 +24,11 @@ The project requires `numpy` **2.2.6** and `opencv-python` **4.11.0.86**.
 `imgutil/grayscale.py` now reads and writes images using `np.fromfile` and
 `cv2.imdecode/encode`. This allows the script to handle file paths that
 contain non-ASCII characters (e.g. Japanese) on Windows.
+
+## Running Tests
+
+Run the test suite within the Poetry environment:
+
+```
+poetry run pytest -q
+```
