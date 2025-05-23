@@ -3,6 +3,7 @@ from pathlib import Path
 
 import cv2
 import numpy as np
+from . import read_image
 
 
 def shift_image(img: np.ndarray, dx: int, dy: int) -> np.ndarray:
@@ -34,8 +35,7 @@ def main():
         print(f"File not found: {input_path}")
         sys.exit(1)
 
-    image_data = np.fromfile(str(input_path), dtype=np.uint8)
-    image = cv2.imdecode(image_data, cv2.IMREAD_COLOR)
+    image = read_image(input_path)
     if image is None:
         print(f"Failed to read image: {input_path}")
         sys.exit(1)

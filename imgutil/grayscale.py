@@ -2,7 +2,7 @@ import sys
 from pathlib import Path
 
 import cv2
-import numpy as np
+from . import read_image
 
 
 def main():
@@ -15,11 +15,8 @@ def main():
         print(f"File not found: {input_path}")
         sys.exit(1)
 
-    # Read the image using OpenCV. The np.fromfile/cv2.imdecode
-    # approach works even when the path contains non-ASCII
-    # characters (e.g. Japanese) on Windows.
-    image_data = np.fromfile(str(input_path), dtype=np.uint8)
-    image = cv2.imdecode(image_data, cv2.IMREAD_COLOR)
+    # Read the image using helper so non-ASCII paths work
+    image = read_image(input_path)
     if image is None:
         print(f"Failed to read image: {input_path}")
         sys.exit(1)
